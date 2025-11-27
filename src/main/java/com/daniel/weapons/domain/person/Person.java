@@ -2,23 +2,27 @@ package com.daniel.weapons.domain.person;
 
 import com.daniel.weapons.domain.weapon.Weapon;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Person {
     private String name;
-    private Weapon[] weapons;
+    private List<? extends Weapon> weapons;
 
-    public Person(String name, Weapon[] weapons) {
+    public Person(String name) {
+        this.name = name;
+    }
 
+    public Person(String name, List<Weapon> weapons) {
         this.name = name;
         this.weapons = weapons;
     }
+
 
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", weapons=" + Arrays.toString(weapons) +
+                ", weapons=" + weapons +
                 '}';
     }
 
@@ -26,7 +30,11 @@ public class Person {
         return name;
     }
 
-    public Weapon[] getWeapons() {
+    public List<? extends Weapon> getWeapons() {
         return weapons;
+    }
+
+    public void setWeapons(List<? extends Weapon> weapons) {
+        this.weapons = weapons;
     }
 }

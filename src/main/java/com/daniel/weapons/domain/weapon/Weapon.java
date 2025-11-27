@@ -1,20 +1,31 @@
 package com.daniel.weapons.domain.weapon;
 
 import com.daniel.weapons.domain.ammo.Ammo;
-import com.daniel.weapons.domain.magazine.Magazine;
+import com.daniel.weapons.domain.ammo.WeaponType;
 
-public abstract class Weapon implements Shootable {
+public abstract class Weapon {
+    WeaponType weaponType;
     String name;
-    private Ammo ammo;
-    private Magazine magazine;
 
-    public Weapon(String name, Ammo ammo, Magazine magazine) {
+    public Weapon() {
+    }
+
+    public Weapon(WeaponType weaponType, String name) {
+        this.weaponType = weaponType;
         this.name = name;
-        this.ammo = ammo;
-        this.magazine = magazine;
+
+    }
+
+    public Weapon(String name, Ammo ammo) {
+        this.name = name;
+
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

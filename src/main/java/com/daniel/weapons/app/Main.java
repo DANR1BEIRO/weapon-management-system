@@ -11,13 +11,19 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<FireArm> larasWeapons = new ArrayList<>(
+        List<Weapon> larasWeapons = new ArrayList<>(
                 List.of(new Rifle(WeaponType.RIFLE, "762", new Magazine(Ammo.RIFLE_AMMO)),
                         new Pistol(WeaponType.PISTOL, "desert eagle", new Magazine(Ammo.PISTOL_AMMO))));
 
-        Person lara = new Person("Lara croft");
-        lara.setWeapons(larasWeapons);
+        Person<Weapon> lara = new Person<>("Lara croft", larasWeapons);
         System.out.println(larasWeapons);
+        for (Weapon larasWeapon : larasWeapons) {
+            larasWeapon.storeWeapon();
+            if (larasWeapon instanceof Reloadable s) {
+                s.reload(20);
 
+
+            }
+        }
     }
 }

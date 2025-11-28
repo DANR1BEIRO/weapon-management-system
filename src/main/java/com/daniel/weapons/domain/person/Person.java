@@ -4,19 +4,18 @@ import com.daniel.weapons.domain.weapon.Weapon;
 
 import java.util.List;
 
-public class Person {
+public class Person<T extends Weapon> {
     private String name;
-    private List<? extends Weapon> weapons;
+    private List<T> weapons;
 
     public Person(String name) {
         this.name = name;
     }
 
-    public Person(String name, List<Weapon> weapons) {
+    public Person(String name, List<T> weapons) {
         this.name = name;
         this.weapons = weapons;
     }
-
 
     @Override
     public String toString() {
@@ -30,11 +29,7 @@ public class Person {
         return name;
     }
 
-    public List<? extends Weapon> getWeapons() {
+    public List<T> getWeapons() {
         return weapons;
-    }
-
-    public void setWeapons(List<? extends Weapon> weapons) {
-        this.weapons = weapons;
     }
 }

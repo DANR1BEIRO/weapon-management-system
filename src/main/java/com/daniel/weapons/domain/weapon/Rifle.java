@@ -1,21 +1,25 @@
 package com.daniel.weapons.domain.weapon;
 
-import com.daniel.weapons.domain.ammo.Ammo;
 import com.daniel.weapons.domain.ammo.WeaponType;
-import com.daniel.weapons.domain.magazine.Magazine;
+import com.daniel.weapons.domain.magazine.AmmoContainer;
 
 public class Rifle extends FireArm {
-    public Rifle(WeaponType weaponType, String name, Magazine magazine) {
+    public Rifle(WeaponType weaponType, String name, AmmoContainer magazine) {
         super(weaponType, name, magazine);
     }
 
     @Override
-    public void Shoot() {
-        super.Shoot();
+    public void storeWeapon() {
+        if (storedWeapon) {
+            System.out.println(getName() + " já está guardada.");
+            return;
+        }
+        System.out.println(getClass().getSimpleName() + " " + getName() + " ppendurada na bandoleira.");
+        storedWeapon = true;
     }
 
     @Override
-    public void reload() {
-        System.out.println("rifle reloading");
+    public void shoot() {
+        super.shoot();
     }
 }

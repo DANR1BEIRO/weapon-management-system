@@ -10,14 +10,8 @@ public class Magazine implements AmmoContainer {
 
     public Magazine(Ammo ammo) {
         this.ammo = ammo;
-        if (this.ammo == Ammo.PISTOL_AMMO) {
-            this.maxCapacity = 12;
-
-        } else if (this.ammo == Ammo.RIFLE_AMMO) {
-            this.maxCapacity = 30;
-        } else {
-            ammunition = 10;
-        }
+        this.maxCapacity = ammo.getAmmoCapacity();
+        this.ammunition = maxCapacity;
     }
 
     @Override
@@ -35,11 +29,8 @@ public class Magazine implements AmmoContainer {
     }
 
     public void increaseAmmo(int amount) {
-        if (ammunition + amount > maxCapacity) {
-            ammunition = maxCapacity;
-        } else {
-            ammunition += amount;
-        }
+        this.ammunition = Math.min(ammunition + amount, maxCapacity);
+        System.out.println("Recarregou +" + amount + ". \nTotal atual: " + this.ammunition + "/" + maxCapacity);
     }
 
     public int getAmmunition() {

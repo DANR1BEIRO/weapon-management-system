@@ -29,8 +29,13 @@ public class Magazine implements AmmoContainer {
     }
 
     public void increaseAmmo(int amount) {
+        int previousAmmo = ammunition;
         this.ammunition = Math.min(ammunition + amount, maxCapacity);
-        System.out.println("Recarregou +" + amount + ". \nTotal atual: " + this.ammunition + "/" + maxCapacity);
+        int loaded = this.ammunition - previousAmmo;
+
+        System.out.println("Carga solicitada: " + amount +
+                "\nRecarga realizada: " + loaded +
+                "\nTotal: " + this.ammunition + "/" + this.maxCapacity);
     }
 
     public int getAmmunition() {

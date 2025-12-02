@@ -6,6 +6,7 @@ import com.daniel.weapons.domain.magazine.AmmoContainer;
 import com.daniel.weapons.domain.magazine.Magazine;
 import com.daniel.weapons.domain.person.Person;
 import com.daniel.weapons.domain.weapon.*;
+import com.daniel.weapons.exception.WeaponException;
 import com.daniel.weapons.service.WeaponService;
 
 import java.util.ArrayList;
@@ -16,12 +17,18 @@ public class Main {
 
         Person lara = new Person("Lara croft",
                 new ArrayList<>(List.of(
-                        new Rifle(WeaponType.RIFLE, "762", new Magazine(Ammo.RIFLE_AMMO)),
-                        new Pistol(WeaponType.PISTOL, "desert eagle", new Magazine(Ammo.PISTOL_AMMO)),
+                        new Rifle(WeaponType.RIFLE, "AK-47", new Magazine(Ammo.RIFLE_AMMO)),
+                        new Pistol(WeaponType.PISTOL, "deagle", new Magazine(Ammo.PISTOL_AMMO)),
                         new Bow(WeaponType.BOW, "Arco da Lara", new Magazine(Ammo.ARROW)))));
 
-        for (Weapon weapon : lara.getWeapons()) {
-            WeaponService.performShoot(weapon, 10);
+        try {
+            for (Weapon weapon : lara.getWeapons()) {
+                WeaponService.performShoot(weapon, 12);
+                WeaponService.performReload(weapon, 2);
+                WeaponService.performStore(weapon);
+            }
+        } catch (WeaponException e) {
+            System.out.println("Falha na missão: " + e.getMessage());
         }
     }
 }

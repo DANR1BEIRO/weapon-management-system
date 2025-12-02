@@ -1,8 +1,8 @@
 package com.daniel.weapons.domain.weapon;
 
-import com.daniel.weapons.domain.ammo.Ammo;
 import com.daniel.weapons.domain.ammo.WeaponType;
 import com.daniel.weapons.domain.magazine.AmmoContainer;
+import com.daniel.weapons.exception.OutOfAmmoException;
 
 public class Bow extends Weapon implements Shootable {
 
@@ -19,7 +19,7 @@ public class Bow extends Weapon implements Shootable {
             System.out.println(getName() + " dispara uma flecha!");
             quiver.decreaseAmmo();
         } else {
-            System.out.println("Sem flechas na aljava!");
+            throw new OutOfAmmoException(getName());
         }
     }
 
@@ -31,5 +31,10 @@ public class Bow extends Weapon implements Shootable {
             System.out.println(getName() + " guardando nas costas junto com a aljava.");
             storedWeapon = true;
         }
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

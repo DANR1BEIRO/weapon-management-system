@@ -1,6 +1,7 @@
 package com.daniel.weapons.service;
 
 import com.daniel.weapons.domain.weapon.*;
+import com.daniel.weapons.exception.IncompatibleAmmoException;
 
 public final class WeaponService {
 
@@ -11,6 +12,8 @@ public final class WeaponService {
     public static void performShoot(Weapon weapon) {
         if (weapon instanceof Shootable s) {
             s.shoot();
+        } else {
+            throw new IncompatibleAmmoException("A arma " + weapon + " não pode efetuar disparos.");
         }
     }
 
@@ -24,6 +27,8 @@ public final class WeaponService {
     public static void performReload(Weapon weapon, int amount) {
         if (weapon instanceof FireArm r) {
             r.reload(amount);
+        } else {
+            throw new IncompatibleAmmoException("A arma " + weapon + " não é recarregável.");
         }
     }
 
@@ -32,6 +37,4 @@ public final class WeaponService {
             s.storeWeapon();
         }
     }
-
-
 }

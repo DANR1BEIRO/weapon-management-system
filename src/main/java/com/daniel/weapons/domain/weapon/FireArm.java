@@ -2,6 +2,7 @@ package com.daniel.weapons.domain.weapon;
 
 import com.daniel.weapons.domain.ammo.WeaponType;
 import com.daniel.weapons.domain.magazine.AmmoContainer;
+import com.daniel.weapons.exception.OutOfAmmoException;
 
 /**
  * Esta classe depende da interface AmmoContainer em vez da implementação concreta Magazine.
@@ -36,8 +37,7 @@ public abstract class FireArm extends Weapon implements Shootable, Reloadable {
     @Override
     public void shoot() {
         if (magazine.getAmmunition() <= 0) {
-            System.out.println(getName() + ": sem munição!");
-            return;
+            throw new OutOfAmmoException(getName());
         }
 
         System.out.println(getName() + " disparando");
